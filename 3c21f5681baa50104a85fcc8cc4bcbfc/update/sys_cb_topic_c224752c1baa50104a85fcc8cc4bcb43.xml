@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <category display_value="Setup Topics">5628e7f27373230025d032e954f6a7de</category>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <flexible_conversation_switching>true</flexible_conversation_switching>
+        <graph>{"graph_api_version":"1.0.21","variables":{},"goals":{"primary":{"id":"primary","trigger":{"type":"primary"},"name":"primary","applicability":"","description":"","nodes":{"b19cab0302ec4e78b91f17d4d99bdfb2":{"id":"b19cab0302ec4e78b91f17d4d99bdfb2","stepType":"Start","name":"Start","greetingResponse":{"mode":"simple","value":""}},"658e517b59a34dd7998dcfa48a301a49":{"id":"658e517b59a34dd7998dcfa48a301a49","stepType":"CustomInput","name":"","generateDataFunction":"","messageTranscriptFunction":"","inputResponseHandlerFunction":"","inputResponseMessageTranscriptFunction":"","unsupportedDeviceMessage":{"value":"","mode":"simple"},"applicability":{"value":"","mode":"query"},"skippable":{"value":"","mode":"query"}},"9dcbad83607743e292aeb1d2344127d2":{"id":"9dcbad83607743e292aeb1d2344127d2","stepType":"TerminateGoal","name":"End","confirmationMessage":{"mode":"simple","value":""}}},"edges":[{"id":"6dba34289880408e8054bf2ebda4c87f","edgeType":"Edge","source":"b19cab0302ec4e78b91f17d4d99bdfb2","target":"658e517b59a34dd7998dcfa48a301a49","sourcePort":"","targetPort":""},{"id":"b3c5cbc3eb5e468a943af72879d745ef","edgeType":"Edge","source":"658e517b59a34dd7998dcfa48a301a49","target":"9dcbad83607743e292aeb1d2344127d2","sourcePort":"","targetPort":""}]}}}</graph>
+        <key_phrases/>
+        <library>true</library>
+        <live_agent>false</live_agent>
+        <name>Covid Diagnosis</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <roles/>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-07 11:31:02</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>c224752c1baa50104a85fcc8cc4bcb43</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Covid Diagnosis</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_cb_topic_c224752c1baa50104a85fcc8cc4bcb43</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-07 11:31:02</sys_updated_on>
+        <type>CUSTOM_INPUT</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=c224752c1baa50104a85fcc8cc4bcb43"/>
+</record_update>

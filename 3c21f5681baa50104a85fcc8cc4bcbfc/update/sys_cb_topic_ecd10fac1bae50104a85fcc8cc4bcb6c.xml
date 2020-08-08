@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{
+  "graph_api_version": "1.0.21",
+  "goals": {
+    "primary": {
+      "id": "primary",
+      "trigger": {
+        "type": "primary"
+      },
+      "name": "primary",
+      "applicability": "",
+      "description": "",
+      "nodes": {
+        "ec2a4133ddfa4165856fdc9e761b4e6d": {
+          "id": "ec2a4133ddfa4165856fdc9e761b4e6d",
+          "stepType": "Start",
+          "name": "Start",
+          "greetingResponse": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "9220112639ce4866b9de4de86a8b4a65": {
+          "id": "9220112639ce4866b9de4de86a8b4a65",
+          "stepType": "TerminateGoal",
+          "name": "End",
+          "confirmationMessage": {
+            "mode": "simple",
+            "value": ""
+          }
+        },
+        "3acfda5f0fdb420eaefd19e544ddf544": {
+          "stepType": "ChoicePrompt",
+          "name": "Symptoms",
+          "prompt": {
+            "value": "What are your symptoms?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "96c92ffa57a24388a366cf50e6a08317",
+          "id": "3acfda5f0fdb420eaefd19e544ddf544",
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        },
+        "f4a2db3730cc4648b737e1190c481744": {
+          "id": "f4a2db3730cc4648b737e1190c481744",
+          "stepType": "TextOutput",
+          "name": "Hello",
+          "value": {
+            "value": "Hello! Let me help you determine your risk of having COVID-19",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "810835767a33413ea1730c7072b4b32e": {
+          "id": "810835767a33413ea1730c7072b4b32e",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "c0a95ea481bc48ec8f05b181e5faa892": {
+          "id": "c0a95ea481bc48ec8f05b181e5faa892",
+          "stepType": "Prompt",
+          "name": "More Symptoms",
+          "prompt": {
+            "value": "Do you have any more symptoms?",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "cbc8251a7aee422b856ed11f668a1dd6"
+        },
+        "f14fc42be41a4d39bd43b89e58e768a2": {
+          "id": "f14fc42be41a4d39bd43b89e58e768a2",
+          "name": "Add to list",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n\n    if (vaInputs.symptoms) {\n        \n        vaVars.all_symptoms += vaInputs.symptoms.getValue() + \",\"\n    }\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "274f9731ba83421a9ee54f3c6b188dfb": {
+          "id": "274f9731ba83421a9ee54f3c6b188dfb",
+          "name": "Create request",
+          "script": "(function execute() {\n    vaVars.s = vaVars.all_symptoms;\n    \n    var temp_C = 37.6;\n\n    if (vaVars.s.includes(\"fever\")) {\n        temp_C = 38.5;\n    }\n\n    var reqBody = {\n        \"age\": 99, // todo later\n        \"high_risk_exposure_occupation\": vaInputs.high_risk_job == \"yes\", // todo later\n        \"labored_respiration\": vaVars.s.includes(\"labored_respiration\"), \n        \"wheezes\": vaVars.s.includes(\"wheezes\"), \n        \"cough\": vaVars.s.includes(\"cough\"),\n        \"temperature\": temp_C,\n        \"diarrhea\": vaVars.s.includes(\"diarrhea\"),\n        \"fatigue\": vaVars.s.includes(\"fatigue\"),\n        \"headache\": vaVars.s.includes(\"headache\"),\n        \"loss_of_smell\": vaVars.s.includes(\"loss_of_smell\"),\n        \"loss_of_taste\": vaVars.s.includes(\"loss_of_taste\"),\n        \"runny_nose\": vaVars.s.includes(\"runny_nose\"),\n        \"muscle_sore\": vaVars.s.includes(\"muscle_sore\"),\n        \"sore_throat\": vaVars.s.includes(\"sore_throat\")\n    };\n\n    var reqBodyStr = JSON.stringify(reqBody);\n\n    var r = new sn_ws.RESTMessageV2('x_410019_covid_dia.COVID19 Hackathon', 'Prediction');\n    r.setRequestBody(reqBodyStr);\n\n    //r.setStringParameterNoEscape('reqBody', reqBodyStr);\n\n    var response = r.execute();\n\n    vaVars.predictionResp = response.getBody();\n    vaVars.respCode = response.getStatusCode();\n    gs.debug(response);\n    gs.info(response);\n\n\n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "fba7a8cf33b8436ea533d4430afe3544": {
+          "id": "fba7a8cf33b8436ea533d4430afe3544",
+          "name": "Determine Risk Level",
+          "script": "(function execute() {\n    /* Code your scripted action here. For example, you might update a\n       record based on conditional logic:\n\n        if (vaVars.my_flag == 'say hello') {\n            gs.info('hi there');\n        } else {\n            gs.info('bye now');\n        }\n    */\n    // detect if there was an error\n    if (vaVars.respCode != 200) {\n        vaVars.risk_level = -1;\n        return;\n    }\n\n    // [prob_negative, prob_positive]\n    var probabilites = JSON.parse(vaVars.predictionResp)[\"prob\"];\n    var prob_covid = probabilites.split(\" \")[1].split(\"]\")[0]\n    vaVars.s = prob_covid;\n\n    if (prob_covid &lt; 0.02) {\n        vaVars.risk_level = 0;\n    }\n    else if (prob_covid &lt; 0.05) {\n        vaVars.risk_level = 1;\n    }\n    else if (prob_covid &lt; 0.15) {\n        vaVars.risk_level = 2;\n    }\n    else if (prob_covid &gt;= 0.15){\n        vaVars.risk_level = 3;\n    }\n    \n})()\n",
+          "stepType": "ScriptAction",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "d0e29a8bdab5404988f4d6f6bad8ab66": {
+          "id": "d0e29a8bdab5404988f4d6f6bad8ab66",
+          "stepType": "ScriptOutput",
+          "name": "Response",
+          "output_type": "single_part",
+          "script": "(function execute() {\n    /***************************************************************\n     YOU CAN OUTPUT A SinglePartOutMsg\n     LIKE THIS:\n\n     var singleOutMsg = new sn_cs.SinglePartOutMsg();\n     singleOutMsg.setTextPart('text part');\n     singleOutMsg.setImagePart('https://docs.servicenow.com/static/custom/logo.svg');\n     singleOutMsg.setHtmlPart('&lt;h1 style=\"color:blue;\"&gt;html part&lt;/h1&gt;');\n     singleOutMsg.setLinkPart('header', 'label', 'link');\n     singleOutMsg.setButtonLinkPart('', 'label', 'link');\n     return singleOutMsg;\n     ****************************************************************/\n\n    /***************************************************************\n     OR YOU CAN OUTPUT A MultiPartOutMsg\n     LIKE THIS:\n\n     var multiOutMsg = new sn_cs.MultiPartOutMsg();\n     multiOutMsg.setNavigationLabel('Click for More');\n     multiOutMsg.addPlainTextPart('text part');\n     multiOutMsg.addHtmlPart('&lt;h1 style=\"color:blue;\"&gt;html part&lt;/h1&gt;');\n     multiOutMsg.addLinkPart('header', 'label', 'link');\n     multiOutMsg.addButtonLinkPart('', 'label', 'link');\n     return multiOutMsg;\n     ****************************************************************/\n\n    /***************************************************************\n     * NOTE: You can include conditional logic when building the\n     * output content. For example, if constructing a sn_cs.MultiPartOutMsg\n     * then you might want to add 3 parts under condition (A) but 7 parts\n     * under condition (B).\n     *\n     * HOWEVER, do NOT include conditional logic that varies the output TYPE.\n     * That is, do NOT include a condition that might return either a\n     * sn_cs.SinglePartOutMsg under condition (A) but returns a\n     * sn_cs.MultiPartOutMsg under condition (B).\n     ****************************************************************/\n\n    var singleOutMsg = new sn_cs.SinglePartOutMsg();\n    var respText = \"\";\n\n    switch (vaVars.risk_level) {\n        case -1:\n          respText = \"Sorry, your response could not be proccess because an error occured. Please try again\";\n          break;\n        case 0:\n          respText = \"The likelyhood of you having COVID-19 are low\";\n          break;\n        case 1:\n          respText = \"The likelyhood of you having COVID-19 are moderate\";\n          break;\n        case 2:\n          respText = \"The likelyhood of you having COVID-19 are high\";\n          break;\n        case 3:\n          respText = \"The likelyhood of you having COVID-19 are very high\";\n          break;\n        default:\n          respText = \"Somebody messed up because this is never supposed to show up\";\n          break;\n    }\n    singleOutMsg.setTextPart(respText);\n\n    return singleOutMsg;\n})()\n",
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "73f29b4d27d449c0bc9ab75c167e201b": {
+          "id": "73f29b4d27d449c0bc9ab75c167e201b",
+          "stepType": "Prompt",
+          "name": "High Risk Job",
+          "prompt": {
+            "value": "Is your job one that would put you at a higher risk to COVID-19? For example, first responders, nurses, cashier",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "0fa97336352e4a63b98dbcacba6c9fd4"
+        },
+        "726adf08a9b443f9ab1294384fd554d6": {
+          "id": "726adf08a9b443f9ab1294384fd554d6",
+          "stepType": "Prompt",
+          "name": "Over 18",
+          "prompt": {
+            "value": "Confirm that you are over the age of 18",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "withNluUserInput": false,
+          "skipIfFulfilled": false,
+          "variableId": "e616e28fc9ea487bae6f5024626d035b"
+        },
+        "c29bfa73bb154c8683078ba092599046": {
+          "id": "c29bfa73bb154c8683078ba092599046",
+          "stepType": "Decision",
+          "name": "Decision"
+        },
+        "1c27d2db46fa453f8252ed7413a3820a": {
+          "id": "1c27d2db46fa453f8252ed7413a3820a",
+          "stepType": "TextOutput",
+          "name": "Before we begin..",
+          "value": {
+            "value": "Before we begin, we first must confirm that you are over the age of 18",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "f77d85ab23cc4000928bfd353f4367db": {
+          "id": "f77d85ab23cc4000928bfd353f4367db",
+          "stepType": "TextOutput",
+          "name": "Disclaimer",
+          "value": {
+            "value": "Please note that this recommendation is not a substitution for a diagnosis. If your conditions worsen, please consult a doctor.",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          }
+        },
+        "7889c19ff8a74fe890dee7bde4f60a97": {
+          "stepType": "ChoicePrompt",
+          "name": "Age",
+          "prompt": {
+            "value": "Select your age range",
+            "mode": "simple"
+          },
+          "confirmMessage": {
+            "value": "",
+            "mode": "simple"
+          },
+          "acknowledgeMsg": {
+            "value": "",
+            "mode": "simple"
+          },
+          "applicability": {
+            "value": "",
+            "mode": "query"
+          },
+          "skippable": {
+            "value": "",
+            "mode": "query"
+          },
+          "defaultValue": {
+            "value": "",
+            "mode": "simple"
+          },
+          "variableId": "46691d14b3504085abbb689bad13f809",
+          "id": "7889c19ff8a74fe890dee7bde4f60a97",
+          "withNluUserInput": false,
+          "skipIfFulfilled": false
+        }
+      },
+      "edges": [
+        {
+          "id": "fdae620854cf4daaba786633d5f1b432",
+          "edgeType": "Edge",
+          "source": "ec2a4133ddfa4165856fdc9e761b4e6d",
+          "target": "f4a2db3730cc4648b737e1190c481744",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "fc94cc1a4dde4e09b7359943f3a21079",
+          "edgeType": "Branch",
+          "source": "810835767a33413ea1730c7072b4b32e",
+          "target": "274f9731ba83421a9ee54f3c6b188dfb",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.more_symptoms=false",
+            "mode": "query"
+          },
+          "label": "No Other Symptoms"
+        },
+        {
+          "id": "8929f9ff69ef4ef48d7147c1f744a103",
+          "edgeType": "Edge",
+          "source": "f14fc42be41a4d39bd43b89e58e768a2",
+          "target": "c0a95ea481bc48ec8f05b181e5faa892",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "b953032864d2471abe6225f525ad0f0f",
+          "edgeType": "Branch",
+          "source": "810835767a33413ea1730c7072b4b32e",
+          "target": "3acfda5f0fdb420eaefd19e544ddf544",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.more_symptoms=true",
+            "mode": "query"
+          },
+          "label": "Additional Symptoms"
+        },
+        {
+          "id": "7191fd70a38844af9286b935d7cd502f",
+          "edgeType": "Edge",
+          "source": "c0a95ea481bc48ec8f05b181e5faa892",
+          "target": "810835767a33413ea1730c7072b4b32e",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "f56cf3ef3f55463e8597e970332976dc",
+          "edgeType": "Edge",
+          "source": "3acfda5f0fdb420eaefd19e544ddf544",
+          "target": "f14fc42be41a4d39bd43b89e58e768a2",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "cd8e00eaef2b4229a3463ffd164a497b",
+          "edgeType": "Edge",
+          "source": "274f9731ba83421a9ee54f3c6b188dfb",
+          "target": "fba7a8cf33b8436ea533d4430afe3544",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "20b362f3ceef436babef84e25d671776",
+          "edgeType": "Edge",
+          "source": "fba7a8cf33b8436ea533d4430afe3544",
+          "target": "d0e29a8bdab5404988f4d6f6bad8ab66",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "2c331f2f1f394043a42f4561d8c30afb",
+          "edgeType": "Edge",
+          "source": "73f29b4d27d449c0bc9ab75c167e201b",
+          "target": "3acfda5f0fdb420eaefd19e544ddf544",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "5cc4a2ec121f4109927941234c5dffb4",
+          "edgeType": "Edge",
+          "source": "726adf08a9b443f9ab1294384fd554d6",
+          "target": "c29bfa73bb154c8683078ba092599046",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "da478ac433f640509ef6d614dd16d285",
+          "edgeType": "Branch",
+          "source": "c29bfa73bb154c8683078ba092599046",
+          "target": "9220112639ce4866b9de4de86a8b4a65",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.over_18=",
+            "mode": "query"
+          },
+          "label": "Too Young"
+        },
+        {
+          "id": "c728fbe637ca4d3fbd56c24ea595b458",
+          "edgeType": "Edge",
+          "source": "f4a2db3730cc4648b737e1190c481744",
+          "target": "1c27d2db46fa453f8252ed7413a3820a",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "63cad4963ca0406ea4daae2dc1b5a649",
+          "edgeType": "Edge",
+          "source": "1c27d2db46fa453f8252ed7413a3820a",
+          "target": "726adf08a9b443f9ab1294384fd554d6",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "54740f364d714eb58ee775f57f58a916",
+          "edgeType": "Edge",
+          "source": "d0e29a8bdab5404988f4d6f6bad8ab66",
+          "target": "f77d85ab23cc4000928bfd353f4367db",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "71957267730b440ea07d839089b46473",
+          "edgeType": "Edge",
+          "source": "f77d85ab23cc4000928bfd353f4367db",
+          "target": "9220112639ce4866b9de4de86a8b4a65",
+          "sourcePort": "",
+          "targetPort": ""
+        },
+        {
+          "id": "4af159743fa74acc945e9d311118fa5c",
+          "edgeType": "Branch",
+          "source": "c29bfa73bb154c8683078ba092599046",
+          "target": "7889c19ff8a74fe890dee7bde4f60a97",
+          "sourcePort": "",
+          "targetPort": "",
+          "expression": {
+            "value": "vaInputs.over_18=true",
+            "mode": "query"
+          },
+          "label": "18+"
+        },
+        {
+          "id": "6b3695ec125145339cec597b6becd4c7",
+          "edgeType": "Edge",
+          "source": "7889c19ff8a74fe890dee7bde4f60a97",
+          "target": "73f29b4d27d449c0bc9ab75c167e201b",
+          "sourcePort": "",
+          "targetPort": ""
+        }
+      ]
+    }
+  },
+  "variables": {
+    "current-user": {
+      "category": "vaInputs",
+      "id": "current-user",
+      "label": "User",
+      "name": "user",
+      "table": "sys_user",
+      "varType": "reference"
+    },
+    "96c92ffa57a24388a366cf50e6a08317": {
+      "id": "96c92ffa57a24388a366cf50e6a08317",
+      "name": "symptoms",
+      "label": "Symptoms",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "Cough",
+          "value": "cough"
+        },
+        {
+          "label": "Fever",
+          "value": "fever",
+          "checked": true
+        },
+        {
+          "label": "Diarrhea",
+          "value": "diarrhea",
+          "checked": true
+        },
+        {
+          "label": "Fatigue",
+          "value": "fatigue",
+          "checked": true
+        },
+        {
+          "label": "Headache",
+          "value": "headache",
+          "checked": true
+        },
+        {
+          "label": "Loss of Smell",
+          "value": "loss_of_smell",
+          "checked": true
+        },
+        {
+          "label": "Loss of Taste",
+          "value": "loss_of_taste",
+          "checked": true
+        },
+        {
+          "label": "Trouble breathing",
+          "value": "labored_respiration",
+          "checked": true
+        },
+        {
+          "label": "Wheezing",
+          "value": "wheezes",
+          "checked": true
+        }
+      ],
+      "category": "vaInputs"
+    },
+    "cbc8251a7aee422b856ed11f668a1dd6": {
+      "id": "cbc8251a7aee422b856ed11f668a1dd6",
+      "name": "more_symptoms",
+      "label": "More Symptoms",
+      "varType": "boolean",
+      "category": "vaInputs"
+    },
+    "212cbba04ff94bef82ed60f8a151df98": {
+      "id": "212cbba04ff94bef82ed60f8a151df98",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n"
+      },
+      "name": "all_symptoms",
+      "label": "all_symptoms",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "2c92254786d34bec8e19a94f10d9af62": {
+      "id": "2c92254786d34bec8e19a94f10d9af62",
+      "value": {
+        "mode": "script",
+        "value": "(function execute() {\n    /* Return a quoted string.  For example:\n\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n"
+      },
+      "name": "s",
+      "label": "s",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "bb73f9350f3a42f2bde445d1bc0d2814": {
+      "id": "bb73f9350f3a42f2bde445d1bc0d2814",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "respCode",
+      "label": "respCode",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "21a3ed79bf92451dbf96b85c2ba3a780": {
+      "id": "21a3ed79bf92451dbf96b85c2ba3a780",
+      "value": {
+        "mode": "simple",
+        "value": ""
+      },
+      "name": "predictionResp",
+      "label": "predictionResp",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "ec32aceb624441a296e07e2650d99001": {
+      "id": "ec32aceb624441a296e07e2650d99001",
+      "value": {
+        "value": "",
+        "mode": "simple"
+      },
+      "name": "risk_level",
+      "label": "risk_level",
+      "varType": "script",
+      "category": "vaVars"
+    },
+    "0fa97336352e4a63b98dbcacba6c9fd4": {
+      "id": "0fa97336352e4a63b98dbcacba6c9fd4",
+      "name": "high_risk_job",
+      "label": "High Risk Job",
+      "varType": "boolean",
+      "category": "vaInputs"
+    },
+    "e616e28fc9ea487bae6f5024626d035b": {
+      "id": "e616e28fc9ea487bae6f5024626d035b",
+      "name": "over_18",
+      "label": "Over 18",
+      "varType": "boolean",
+      "category": "vaInputs"
+    },
+    "46691d14b3504085abbb689bad13f809": {
+      "id": "46691d14b3504085abbb689bad13f809",
+      "name": "age",
+      "label": "Age",
+      "varType": "choice",
+      "choices": [
+        {
+          "label": "18-25",
+          "value": "25"
+        },
+        {
+          "label": "26-35",
+          "value": "35",
+          "checked": true
+        },
+        {
+          "label": "36-45",
+          "value": "45",
+          "checked": true
+        },
+        {
+          "label": "46-65",
+          "value": "60",
+          "checked": true
+        },
+        {
+          "label": "66+",
+          "value": "70",
+          "checked": true
+        }
+      ],
+      "category": "vaInputs"
+    }
+  }
+}</graph>
+        <key_phrases>COVID Prediction</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>COVID Prediction</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <roles/>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 17:10:22</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>ecd10fac1bae50104a85fcc8cc4bcb6c</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>COVID Prediction</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_cb_topic_ecd10fac1bae50104a85fcc8cc4bcb6c</sys_update_name>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 22:50:32</sys_updated_on>
+        <type>STANDARD</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="delete_multiple" query="document_key=ecd10fac1bae50104a85fcc8cc4bcb6c"/>
+</record_update>

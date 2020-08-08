@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_cb_topic_language">
+    <sys_cb_topic_language action="INSERT_OR_UPDATE">
+        <cb_topic_id display_value="COVID Prediction">ecd10fac1bae50104a85fcc8cc4bcb6c</cb_topic_id>
+        <language_code>en</language_code>
+        <nlu_entities>[{"node_id":"3acfda5f0fdb420eaefd19e544ddf544","variable_name":"symptoms","nlu_entity":"","nlu_entity_label":""},{"node_id":"c0a95ea481bc48ec8f05b181e5faa892","variable_name":"more_symptoms","nlu_entity":"","nlu_entity_label":""},{"node_id":"73f29b4d27d449c0bc9ab75c167e201b","variable_name":"high_risk_job","nlu_entity":"","nlu_entity_label":""},{"node_id":"726adf08a9b443f9ab1294384fd554d6","variable_name":"over_18","nlu_entity":"","nlu_entity_label":""},{"node_id":"7889c19ff8a74fe890dee7bde4f60a97","variable_name":"age","nlu_entity":"","nlu_entity_label":""}]</nlu_entities>
+        <nlu_intent>Covid</nlu_intent>
+        <nlu_intent_label>Covid</nlu_intent_label>
+        <nlu_model>global_3c21f5681baa50104a85fcc8cc4bcbfc_78c171a81baa50104a85fcc8cc4bcb69</nlu_model>
+        <nlu_model_label>Covid Diagnosis</nlu_model_label>
+        <nlu_provider>64c023c17300330021a044764df6a70e</nlu_provider>
+        <sys_class_name>sys_cb_topic_language</sys_class_name>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 17:10:22</sys_created_on>
+        <sys_id>f8d103ec1bae50104a85fcc8cc4bcbe2</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_cb_topic_language_f8d103ec1bae50104a85fcc8cc4bcbe2</sys_update_name>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 21:29:29</sys_updated_on>
+    </sys_cb_topic_language>
+</record_update>

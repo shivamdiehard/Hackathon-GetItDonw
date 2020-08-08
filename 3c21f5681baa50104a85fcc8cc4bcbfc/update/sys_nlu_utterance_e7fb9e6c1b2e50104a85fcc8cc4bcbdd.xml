@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_nlu_utterance">
+    <sys_nlu_utterance action="INSERT_OR_UPDATE">
+        <intent display_value="Covid">50d3bd681baa50104a85fcc8cc4bcb6d</intent>
+        <sys_class_name>sys_nlu_utterance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-07 14:25:05</sys_created_on>
+        <sys_id>e7fb9e6c1b2e50104a85fcc8cc4bcbdd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>covid</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_nlu_utterance_e7fb9e6c1b2e50104a85fcc8cc4bcbdd</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-07 14:25:05</sys_updated_on>
+        <utterance>covid</utterance>
+    </sys_nlu_utterance>
+</record_update>

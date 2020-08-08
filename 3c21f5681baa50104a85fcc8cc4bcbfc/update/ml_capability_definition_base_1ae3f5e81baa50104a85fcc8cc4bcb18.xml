@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="ml_capability_definition_base">
+    <ml_capability_definition_base action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <capability display_value="NLU">b4ddf73453c73300d1dcddeeff7b1288</capability>
+        <current_solution_version>3</current_solution_version>
+        <dataset_language>en</dataset_language>
+        <fields/>
+        <filter/>
+        <request_source>ui</request_source>
+        <solution_label>global_3c21f5681baa50104a85fcc8cc4bcbfc_78c171a81baa50104a85fcc8cc4bcb69</solution_label>
+        <solution_name>ml_global_3c21f5681baa50104a85fcc8cc4bcbfc_78c171a81baa50104a85fcc8cc4bcb69</solution_name>
+        <solution_parameters/>
+        <solution_properties/>
+        <stopwords>a6282a25533333008c5bddeeff7b12c3</stopwords>
+        <sys_class_name>ml_capability_definition_base</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-08-07 11:29:57</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>1ae3f5e81baa50104a85fcc8cc4bcb18</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>global_3c21f5681baa50104a85fcc8cc4bcbfc_78c171a81baa50104a85fcc8cc4bcb69</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>ml_capability_definition_base_1ae3f5e81baa50104a85fcc8cc4bcb18</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-08-07 11:29:57</sys_updated_on>
+        <table/>
+        <training_frequency>every_30_days</training_frequency>
+        <word_vector_corpus/>
+    </ml_capability_definition_base>
+</record_update>
