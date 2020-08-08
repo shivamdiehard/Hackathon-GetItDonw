@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application>Virtual Agent</application>
+        <key>Loss of Taste</key>
+        <language>en</language>
+        <message>Loss of Taste</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 22:21:59</sys_created_on>
+        <sys_id>e52904fc1ba290104a85fcc8cc4bcbd4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Loss of Taste</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_ui_message_e52904fc1ba290104a85fcc8cc4bcbd4</sys_update_name>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 22:21:59</sys_updated_on>
+    </sys_ui_message>
+</record_update>

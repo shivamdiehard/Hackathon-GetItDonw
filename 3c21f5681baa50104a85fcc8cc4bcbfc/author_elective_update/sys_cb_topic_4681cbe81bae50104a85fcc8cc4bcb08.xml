@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="DELETE">
+        <applicability/>
+        <category display_value="Customer Service Topics">b28634c4b7b93300da7ab948ee11a93a</category>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <flexible_conversation_switching>true</flexible_conversation_switching>
+        <graph>{"graph_api_version":"1.0.21","variables":{},"goals":{"primary":{"id":"primary","trigger":{"type":"primary"},"name":"primary","applicability":"","description":"","nodes":{"100bf98942a74ec3b9989e5e6d262e5f":{"id":"100bf98942a74ec3b9989e5e6d262e5f","stepType":"Start","name":"Start","greetingResponse":{"mode":"simple","value":""}},"b6d5e18c5559413f96a75d4d6c5a3dfc":{"id":"b6d5e18c5559413f96a75d4d6c5a3dfc","stepType":"CustomInput","name":"","generateDataFunction":"","messageTranscriptFunction":"","inputResponseHandlerFunction":"","inputResponseMessageTranscriptFunction":"","unsupportedDeviceMessage":{"value":"","mode":"simple"},"applicability":{"value":"","mode":"query"},"skippable":{"value":"","mode":"query"}},"d51847bf6cc84e10a317b1869cf8db8f":{"id":"d51847bf6cc84e10a317b1869cf8db8f","stepType":"TerminateGoal","name":"End","confirmationMessage":{"mode":"simple","value":""}}},"edges":[{"id":"f28213133b5040d7ac69bd0d17074a70","edgeType":"Edge","source":"100bf98942a74ec3b9989e5e6d262e5f","target":"b6d5e18c5559413f96a75d4d6c5a3dfc","sourcePort":"","targetPort":""},{"id":"7821fd80fa8e47c7b199556afe5e9d21","edgeType":"Edge","source":"b6d5e18c5559413f96a75d4d6c5a3dfc","target":"d51847bf6cc84e10a317b1869cf8db8f","sourcePort":"","targetPort":""}]}}}</graph>
+        <key_phrases/>
+        <library>true</library>
+        <live_agent>false</live_agent>
+        <name>Covid Prediction</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <roles/>
+        <source_topic_id/>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 17:09:05</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>4681cbe81bae50104a85fcc8cc4bcb08</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Covid Prediction</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_update_name>sys_cb_topic_4681cbe81bae50104a85fcc8cc4bcb08</sys_update_name>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 17:09:05</sys_updated_on>
+        <type>CUSTOM_INPUT</type>
+        <variables/>
+    </sys_cb_topic>
+    <sys_variable_value action="DELETE" query="document_key=4681cbe81bae50104a85fcc8cc4bcb08"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</application>
+        <file_path/>
+        <instance_id>4ca42a74db7b7fc042b321c405961922</instance_id>
+        <instance_name>dev93333</instance_name>
+        <name>sys_cb_topic_4681cbe81bae50104a85fcc8cc4bcb08</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic"><sys_cb_topic action="INSERT_OR_UPDATE"><applicability/><category display_value="Customer Service Topics">b28634c4b7b93300da7ab948ee11a93a</category><channels/><connect_queue/><description/><flexible_conversation_switching>true</flexible_conversation_switching><graph>{"graph_api_version":"1.0.21","variables":{},"goals":{"primary":{"id":"primary","trigger":{"type":"primary"},"name":"primary","applicability":"","description":"","nodes":{"100bf98942a74ec3b9989e5e6d262e5f":{"id":"100bf98942a74ec3b9989e5e6d262e5f","stepType":"Start","name":"Start","greetingResponse":{"mode":"simple","value":""}},"b6d5e18c5559413f96a75d4d6c5a3dfc":{"id":"b6d5e18c5559413f96a75d4d6c5a3dfc","stepType":"CustomInput","name":"","generateDataFunction":"","messageTranscriptFunction":"","inputResponseHandlerFunction":"","inputResponseMessageTranscriptFunction":"","unsupportedDeviceMessage":{"value":"","mode":"simple"},"applicability":{"value":"","mode":"query"},"skippable":{"value":"","mode":"query"}},"d51847bf6cc84e10a317b1869cf8db8f":{"id":"d51847bf6cc84e10a317b1869cf8db8f","stepType":"TerminateGoal","name":"End","confirmationMessage":{"mode":"simple","value":""}}},"edges":[{"id":"f28213133b5040d7ac69bd0d17074a70","edgeType":"Edge","source":"100bf98942a74ec3b9989e5e6d262e5f","target":"b6d5e18c5559413f96a75d4d6c5a3dfc","sourcePort":"","targetPort":""},{"id":"7821fd80fa8e47c7b199556afe5e9d21","edgeType":"Edge","source":"b6d5e18c5559413f96a75d4d6c5a3dfc","target":"d51847bf6cc84e10a317b1869cf8db8f","sourcePort":"","targetPort":""}]}}}</graph><key_phrases/><library>true</library><live_agent>false</live_agent><name>Covid Prediction</name><nlu_intent/><nlu_intent_label/><nlu_model/><nlu_model_label/><nlu_provider/><roles/><source_topic_id/><sys_class_name>sys_cb_topic</sys_class_name><sys_created_by>gavin</sys_created_by><sys_created_on>2020-08-07 17:09:05</sys_created_on><sys_domain>global</sys_domain><sys_id>4681cbe81bae50104a85fcc8cc4bcb08</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Covid Prediction</sys_name><sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package><sys_policy/><sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope><sys_update_name>sys_cb_topic_4681cbe81bae50104a85fcc8cc4bcb08</sys_update_name><sys_updated_by>gavin</sys_updated_by><sys_updated_on>2020-08-07 17:09:05</sys_updated_on><type>CUSTOM_INPUT</type><variables/></sys_cb_topic><sys_variable_value action="delete_multiple" query="document_key=4681cbe81bae50104a85fcc8cc4bcb08"/></record_update>]]></payload>
+        <payload_hash>1944177011</payload_hash>
+        <record_name>Covid Prediction</record_name>
+        <reverted_from/>
+        <source>3421f5681baa50104a85fcc8cc4bcbff</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 17:09:06</sys_created_on>
+        <sys_id>0a810fac1bae50104a85fcc8cc4bcb67</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>173c9e5c7ad0000001</sys_recorded_at>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 17:09:06</sys_updated_on>
+        <type>Topic</type>
+        <update_guid>42810face8ae5010e4cceb04192a2667</update_guid>
+        <update_guid_history>42810face8ae5010e4cceb04192a2667:1944177011</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>gavin</sys_created_by>
+        <sys_created_on>2020-08-07 17:09:40</sys_created_on>
+        <sys_db_object display_value="" name="sys_cb_topic">sys_cb_topic</sys_db_object>
+        <sys_id>0c69baa3c3364c0ba181b815d757c541</sys_id>
+        <sys_metadata>4681cbe81bae50104a85fcc8cc4bcb08</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Covid Prediction</sys_name>
+        <sys_package display_value="Covid Diagnoisi" source="x_410019_covid_dia">3c21f5681baa50104a85fcc8cc4bcbfc</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Covid Diagnoisi">3c21f5681baa50104a85fcc8cc4bcbfc</sys_scope>
+        <sys_scope_delete display_value="">3957d08435c24d2e987b83a6469598c4</sys_scope_delete>
+        <sys_update_name>sys_cb_topic_4681cbe81bae50104a85fcc8cc4bcb08</sys_update_name>
+        <sys_update_version display_value="sys_cb_topic_4681cbe81bae50104a85fcc8cc4bcb08">0a810fac1bae50104a85fcc8cc4bcb67</sys_update_version>
+        <sys_updated_by>gavin</sys_updated_by>
+        <sys_updated_on>2020-08-07 17:09:40</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
